@@ -2,7 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import Icon from '@mdi/react';
 import { mdiIncognito } from '@mdi/js';
 import { ChevronDown, ChevronUp, HandCoins, AlignLeft } from "lucide-react";
-import ChatCard from "./ChatCard";
+import ChatInputCard from "./ChatInputCard";
+import Chats from "./Chats";
 import { useMobileSidebarContext } from '../hooks/useMobileSidebarContext';
 import { useIsMobileContext } from "../hooks/useIsMobileContext";
 
@@ -12,6 +13,7 @@ export default function MainChat() {
   const dropdownRef = useRef(null);
   const { setShowMobileSidebar } = useMobileSidebarContext();
   const { isMobile } = useIsMobileContext();
+  const [chats, setChats] = useState([]);
 
   const models = ["GPT-4o", "GPT-4", "Claude 3 Opus", "Mistral 7B"];
 
@@ -81,19 +83,26 @@ export default function MainChat() {
           <Icon path={mdiIncognito} size={1} />
         </button>
       </nav>
-      <div className="flex flex-col items-center h-full w-full">
-        <div className="flex-1 flex justify-center items-center w-full max-w-3xl">
+      <div className="flex flex-col items-center h-full w-full overflow-hidden">
+        <div className="flex-1 flex justify-center w-full max-w-3xl px-4 overflow-hidden">
           {
-            temporaryChat ?
-              <div className='flex flex-col justify-center items-center gap-2  text-center px-4'>
-                <h1 className="text-3xl font-semibold">Temporary Chat</h1>
-                <p>This chat won't appear in history, use or update PolyMind's memory.</p>
-              </div>
-              : <h1 className="text-3xl font-semibold text-center px-4">Where should we begin?</h1>
+            chats.length > 0 ?
+              <Chats chats={chats} />
+              : (
+                <div className="flex items-center justify-center h-full w-full">
+                  {temporaryChat ?
+                    <div className='flex flex-col justify-center items-center gap-2 text-center px-4'>
+                      <h1 className="text-3xl font-semibold">Temporary Chat</h1>
+                      <p>This chat won't appear in history, use or update PolyMind's memory.</p>
+                    </div>
+                    : <h1 className="text-3xl font-semibold text-center px-4">Where should we begin?</h1>
+                  }
+                </div>
+              )
           }
         </div>
-        <div className="flex justify-center p-6 w-full">
-          <ChatCard />
+        <div className="flex justify-center pb-6 w-full">
+          <ChatInputCard setChats={setChats} />
         </div>
       </div>
     </div>

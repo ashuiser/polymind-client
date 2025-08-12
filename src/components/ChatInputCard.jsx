@@ -38,10 +38,15 @@ export default function ChatInputCard({ setChats }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (textValue.trim()) {
+    const trimmedTextValue = textValue.trim();
+    if (trimmedTextValue) {
       // Handle form submission here
-      setChats(prev => [...prev, textValue]);
-      console.log("Submitted text:", textValue);
+      const chat = {
+        role: "user",
+        message: trimmedTextValue,
+      }
+      setChats(prev => [...prev, chat]);
+      console.log("Submitted text:", chat);
 
       // Reset form
       setTextValue("");
@@ -74,8 +79,9 @@ export default function ChatInputCard({ setChats }) {
                     ref={textareaRef}
                     value={textValue}
                     rows={1}
+                    name="promptField"
                     placeholder="Ask anything"
-                    className="bg-transparent px-1 resize-none w-full text-white placeholder:text-gray-400 focus:outline-none max-h-[22rem] overflow-auto 
+                    className="bg-transparent px-1 py-1 resize-none w-full text-white placeholder:text-gray-400 focus:outline-none max-h-[22rem] overflow-auto 
                     scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-600 hover:scrollbar-thumb-gray-500"
                     style={{
                       height: textHeight,
@@ -120,6 +126,7 @@ export default function ChatInputCard({ setChats }) {
                   ref={textareaRef}
                   value={textValue}
                   rows={1}
+                  name="promptField"
                   placeholder="Ask anything"
                   className="bg-transparent resize-none w-full text-white placeholder:text-gray-400 focus:outline-none overflow-hidden"
                   style={{ height: textHeight }}
