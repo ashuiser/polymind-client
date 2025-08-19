@@ -19,12 +19,12 @@ export default function ChatInputCard({ setChats }) {
     setTextHeight(newHeight + "rem");
 
     // Check if we should switch to expanded layout (more than ~3 lines)
-    const shouldExpand = newHeight > 5; //shouldExpand when height > 5rem
+    const shouldExpand = newHeight >= 3; //shouldExpand when height > 5rem
     const wasExpanded = isExpanded;
-    setIsExpanded(shouldExpand);
 
     // Maintain focus after layout change
     if (wasExpanded !== shouldExpand) {
+      setIsExpanded(shouldExpand)
       setTimeout(() => {
         if (textareaRef.current) {
           textareaRef.current.focus();
@@ -58,86 +58,37 @@ export default function ChatInputCard({ setChats }) {
     }
   };
 
+
   return (
-    <div className="w-full max-w-3xl px-4">
+    <div className="w-full max-w-4xl px-4">
       <form onSubmit={handleSubmit}>
         <div className={`relative flex items-center justify-center w-full bg-[#0f0f0f] px-4 pb-3 ${isExpanded ? '' : 'pt-3'} shadow-inner transition-colors duration-150 min-h-[3.5rem] border border-[#282828] focus-within:border-[#454545] ${isExpanded ? 'rounded-2xl' : 'rounded-full'
           }`}>
 
           {/* Main content area with conditional layout */}
-          <div className={`flex gap-3 w-full ${isExpanded ? 'flex-col' : 'items-center'}`}>
+          <div className={`flex  gap-3 w-full  relative`}>
 
-            {/* When expanded: Textarea on top */}
-            {isExpanded ? (
-              <>
-                {/* Text area container with blur effect */}
-                <div className="relative flex-1">
-                  {/* Top blur gradient */}
-                  <div className="absolute top-0 left-0 right-0 h-4 bg-gradient-to-b from-[#0f0f0f] to-transparent pointer-events-none z-10 opacity-0 transition-opacity duration-150" />
 
-                  <textarea
-                    ref={textareaRef}
-                    value={textValue}
-                    rows={1}
-                    name="promptField"
-                    placeholder="Ask anything"
-                    className="bg-transparent px-1 py-1 resize-none w-full text-white placeholder:text-gray-400 focus:outline-none max-h-[22rem] overflow-auto 
-                    scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-600 hover:scrollbar-thumb-gray-500"
-                    style={{
-                      height: textHeight,
-                      scrollbarWidth: 'thin',
-                      scrollbarColor: '#4B5563 transparent'
-                    }}
-                    onInput={handleInput}
-                    onScroll={(e) => {
-                      // Update blur effect on scroll
-                      const topBlur = e.target.parentElement.querySelector('.absolute.top-0');
-                      const bottomBlur = e.target.parentElement.querySelector('.absolute.bottom-0');
+            <>
+              {/* Original horizontal layout for short text */}
+              <PlusIcon className="h-5 w-5 mb-0.5 absolute bottom-0 text-white shrink-0" />
 
-                      if (topBlur) {
-                        topBlur.style.opacity = e.target.scrollTop > 5 ? 1 : 0;
-                      }
+              <textarea
+                ref={textareaRef}
+                value={textValue}
+                rows={1}
+                name="promptField"
+                placeholder="Ask anything"
+                className={`bg-transparent resize-none w-full text-white placeholder:text-gray-400 focus:outline-none overflow-hidden overflow-y-auto scrollbar-thin mx-10 ${isExpanded ? 'mb-7 mt-3' : ''}`}
+                style={{ height: textHeight }}
+                onInput={handleInput}
+              />
 
-                      if (bottomBlur) {
-                        const isScrolledToBottom = e.target.scrollHeight - e.target.scrollTop <= e.target.clientHeight + 5;
-                        bottomBlur.style.opacity = isScrolledToBottom ? 0 : 1;
-                      }
-                    }}
-                  />
+              <button type="submit" className=" absolute -bottom-1 right-0 bg-gray-800 hover:bg-gray-700 text-amber-200 rounded-full p-2 shrink-0 transition-colors duration-150">
+                <ArrowUpIcon className="h-4 w-4" />
+              </button>
+            </>
 
-                  {/* Bottom blur gradient */}
-                  <div className="absolute bottom-0 left-0 right-0 h-4 bg-gradient-to-t from-[#0f0f0f] to-transparent pointer-events-none z-10 opacity-0 transition-opacity duration-150" />
-                </div>
-
-                {/* Bottom row with plus icon and send button */}
-                <div className="flex items-center justify-between w-full">
-                  <PlusIcon className="h-5 w-5 text-white shrink-0" />
-                  <button type="submit" className="bg-gray-800 hover:bg-gray-700 text-amber-200 rounded-full p-2 shrink-0 transition-colors duration-150">
-                    <ArrowUpIcon className="h-4 w-4" />
-                  </button>
-                </div>
-              </>
-            ) : (
-              <>
-                {/* Original horizontal layout for short text */}
-                <PlusIcon className="h-5 w-5 text-white shrink-0" />
-
-                <textarea
-                  ref={textareaRef}
-                  value={textValue}
-                  rows={1}
-                  name="promptField"
-                  placeholder="Ask anything"
-                  className="bg-transparent resize-none w-full text-white placeholder:text-gray-400 focus:outline-none overflow-hidden"
-                  style={{ height: textHeight }}
-                  onInput={handleInput}
-                />
-
-                <button type="submit" className="bg-gray-800 hover:bg-gray-700 text-amber-200 rounded-full p-2 shrink-0 transition-colors duration-150">
-                  <ArrowUpIcon className="h-4 w-4" />
-                </button>
-              </>
-            )}
           </div>
         </div>
       </form>

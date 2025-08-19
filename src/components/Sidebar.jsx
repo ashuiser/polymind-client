@@ -8,7 +8,7 @@ import { useIsMobileContext } from '../hooks/useIsMobileContext';
 const SidebarContext = createContext();
 
 export default function Sidebar({ children }) {
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
   const { isMobile } = useIsMobileContext();
   const sidebarRef = useRef(null);
   const { showMobileSidebar, setShowMobileSidebar } = useMobileSidebarContext();

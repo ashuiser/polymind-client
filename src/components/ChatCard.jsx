@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 
 export default function ChatCard({ chat }) {
   return (
-    <div className='group flex flex-col gap-1 w-full items-end justify-end'>
+    <div className='group flex flex-col gap-1 w-full items-end justify-end break-words mb-2'>
       {
         chat.role === "user" ?
           <div className='max-w-[70%] h-fit px-4 py-3 rounded-[18px] bg-[#0F0F0F]'>

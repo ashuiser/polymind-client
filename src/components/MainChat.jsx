@@ -33,7 +33,7 @@ export default function MainChat() {
   }, []);
 
   return (
-    <div className="flex h-screen flex-col justify-between">
+    <div className="relative flex h-screen max-w-screen flex-col justify-between items-center">
       <nav className="flex w-full items-center justify-between py-2 px-4">
         {/* Mobile Menu Button */}
         {isMobile && <button
@@ -79,17 +79,19 @@ export default function MainChat() {
           <HandCoins className="h-5 w-5" />
           <h4>Buy Tokens</h4>
         </button>}
-        <button onClick={() => setTemporaryChat((curr) => !curr)} className={`p-2 rounded-xl cursor-pointer ${temporaryChat ? 'bg-gray-800' : 'hover:bg-gray-900'}`}>
+        <button
+          disabled={chats.length > 0 ? true : false}
+          onClick={() => setTemporaryChat((curr) => !curr)} className={`p-2 rounded-xl cursor-pointer ${temporaryChat ? 'bg-gray-800' : 'hover:bg-gray-900'}`}>
           <Icon path={mdiIncognito} size={1} />
         </button>
       </nav>
       <div className="flex flex-col items-center h-full w-full overflow-hidden">
-        <div className="flex-1 flex justify-center w-full max-w-3xl px-4 overflow-hidden">
+        <div className="flex-1 flex justify-center w-full overflow-hidden">
           {
             chats.length > 0 ?
               <Chats chats={chats} />
               : (
-                <div className="flex items-center justify-center h-full w-full">
+                <div className="flex items-center justify-center h-full w-full max-w-5xl px-4">
                   {temporaryChat ?
                     <div className='flex flex-col justify-center items-center gap-2 text-center px-4'>
                       <h1 className="text-3xl font-semibold">Temporary Chat</h1>
