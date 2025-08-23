@@ -1,6 +1,6 @@
 import PolymindLogo from '../assets/PolymindNewText.png';
 import { Outlet } from 'react-router';
-import { LucidLoader } from '../components/ui/Loader';
+import { LucidLoader } from '../components/Loader';
 import { ClerkLoading, ClerkLoaded } from '@clerk/clerk-react';
 import { HeroHighlight } from '../components/ui/HeroHighlight';
 
@@ -8,7 +8,7 @@ export default function AuthPageLayout() {
   return (
     <>
       <ClerkLoading>
-        <LucidLoader />
+        <LucidLoader className="h-screen w-screen bg-black flex justify-center items-center text-gray-600" />
       </ClerkLoading>
       <ClerkLoaded>
         <HeroHighlight containerClassName="h-fit w-fit">

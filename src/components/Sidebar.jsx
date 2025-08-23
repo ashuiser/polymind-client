@@ -1,8 +1,9 @@
 import { createContext, useContext, useState, useEffect, useRef } from 'react';
 import PolymindLogo from '../assets/PolymindNewText.png';
-import { MoreVertical, SidebarCloseIcon, SidebarOpenIcon, X } from 'lucide-react';
+import { SidebarCloseIcon, SidebarOpenIcon, X } from 'lucide-react';
 import { useMobileSidebarContext } from '../hooks/useMobileSidebarContext';
 import { useIsMobileContext } from '../hooks/useIsMobileContext';
+import SidebarProfile from './SidebarProfile';
 
 
 const SidebarContext = createContext();
@@ -50,15 +51,8 @@ export default function Sidebar({ children }) {
         <SidebarContext.Provider value={{ expanded: isMobile ? true : expanded, isMobile }}>
           <ul className='flex-1 px-3'>{children}</ul>
         </SidebarContext.Provider>
-        <div className='border-t border-gray-700 flex p-3 items-center'>
-          <img src="https://ui-avatars.com/api/?background=f0f4c3&name=Ashutosh+Panigrahi&bold=true" alt="Profile Picture" className='w-10 h-10 rounded-md' />
-          <div className={`flex justify-between items-center overflow-hidden transition-all ${(isMobile ? true : expanded) ? 'w-52 ml-3' : 'w-0'}`}>
-            <div className='leading-5'>
-              <h4 className='font-semibold'>Ashutosh Panigrahi</h4>
-              <span className='text-xs text-gray-500'>ashutoshpanigrahi@gmail.com</span>
-            </div>
-            <MoreVertical size={20} />
-          </div>
+        <div className='relative border-t border-gray-700 flex p-2 items-center justify-center'>
+          <SidebarProfile expanded={expanded} />
         </div>
       </nav>
     </aside>
