@@ -1,12 +1,13 @@
 import MobileSidebarContextProvider from "./contexts/MobileSidebarContextProvider";
 import IsMobileContextProvider from "./contexts/isMobileContextProvider";
-import ChatPage from "./pages/ChatPage";
+import AppRoutes from "./routes/AppRoutes";
+
 
 export default function App() {
   return (
     <IsMobileContextProvider>
       <MobileSidebarContextProvider>
-        <ChatPage />
+        <AppRoutes />
       </MobileSidebarContextProvider>
     </IsMobileContextProvider>
   )
