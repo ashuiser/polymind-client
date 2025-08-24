@@ -26,7 +26,7 @@ export default function ChatPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div className="relative text-white bg-black h-screen w-screen flex overflow-hidden">
+    <div className="relative text-white bg-black h-[100dvh] w-screen flex overflow-hidden">
       <Sidebar>
         <hr className="my-3 text-gray-700" />
         <SidebarItem icon={<CirclePlus className="h-6 w-6" />} text="New Chat" />
@@ -36,7 +36,7 @@ export default function ChatPage() {
         <SidebarItem icon={<LifeBuoy className="h-6 w-6" />} text="Help" />
         <hr className="my-3 text-gray-700" />
       </Sidebar>
-      <main className="h-screen flex-1">
+      <main className="h-[100dvh] flex-1">
         <ContentArea />
       </main>
     </div>

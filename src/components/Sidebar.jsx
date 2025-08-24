@@ -40,7 +40,7 @@ export default function Sidebar({ children }) {
   };
 
   return (
-    <aside className={`h-screen w-fit transition-all ${showMobileSidebar ? 'absolute z-20 left-0' : 'absolute z-20 -left-100'} lg:relative lg:left-0`} ref={sidebarRef}>
+    <aside className={`h-[100dvh] w-fit transition-all ${showMobileSidebar ? 'absolute z-20 left-0' : 'absolute z-20 -left-100'} lg:relative lg:left-0`} ref={sidebarRef}>
       <nav className='h-full flex flex-col bg-black border-r border-gray-700 shadow-md shadow-gray-700'>
         <div className='p-4 pb-2 flex justify-between items-center'>
           <img src={PolymindLogo} alt="Polymind Logo" className={`overflow-hidden transition-all ${(isMobile ? true : expanded) ? 'w-32' : 'w-0'}`} />

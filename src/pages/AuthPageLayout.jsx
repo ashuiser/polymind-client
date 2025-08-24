@@ -8,11 +8,11 @@ export default function AuthPageLayout() {
   return (
     <>
       <ClerkLoading>
-        <LucidLoader className="h-screen w-screen bg-black flex justify-center items-center text-gray-600" />
+        <LucidLoader className="h-[100dvh] w-screen bg-black flex justify-center items-center text-gray-600" />
       </ClerkLoading>
       <ClerkLoaded>
         <HeroHighlight containerClassName="h-fit w-fit">
-          <div className='w-screen h-fit min-h-screen overflow-x-hidden relative bg-transparent flex items-center justify-center pt-6 pb-4'>
+          <div className='w-screen h-fit min-h-[100dvh] overflow-x-hidden relative bg-transparent flex items-center justify-center pt-6 pb-4'>
             <div className='h-fit w-fit flex flex-col gap-7 items-center text-white'>
               <img src={PolymindLogo} alt="Polymind Logo" className='w-42 lg:w-52' />
               {/* <div>

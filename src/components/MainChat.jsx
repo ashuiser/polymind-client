@@ -30,7 +30,7 @@ export default function MainChat() {
         <ChatInputCard />
       </div>
     </div>
-    // <div className="relative flex h-screen max-w-screen flex-col justify-between items-center">
+    // <div className="relative flex h-[100dvh] max-w-screen flex-col justify-between items-center">
     // </div>
   )
 }

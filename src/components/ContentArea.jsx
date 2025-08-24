@@ -33,7 +33,7 @@ export default function ContentArea() {
   }, []);
 
   return (
-    <div className='relative flex h-screen max-w-screen flex-col justify-between items-center'>
+    <div className='relative flex h-[100dvh] max-w-screen flex-col justify-between items-center'>
       <nav className="flex w-full items-center justify-between py-2 px-4">
         {/* Mobile Menu Button */}
         {isMobile && <button
