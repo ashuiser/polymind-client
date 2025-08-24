@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import ContentArea from "../components/ContentArea";
 import MainChat from "../components/MainChat";
 import Sidebar from "../components/Sidebar";
 import { SidebarItem } from "../components/Sidebar";
@@ -36,7 +37,7 @@ export default function ChatPage() {
         <hr className="my-3 text-gray-700" />
       </Sidebar>
       <main className="h-screen flex-1">
-        <MainChat />
+        <ContentArea />
       </main>
     </div>
   )

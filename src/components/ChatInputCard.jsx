@@ -1,11 +1,13 @@
 import { PlusIcon, ArrowUpIcon } from "@heroicons/react/24/outline";
 import { useState, useRef } from "react";
+import { useChatsContext } from "../hooks/useChatsContext";
 
-export default function ChatInputCard({ setChats }) {
+export default function ChatInputCard() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [textValue, setTextValue] = useState("");
   const [textHeight, setTextHeight] = useState("auto");
   const textareaRef = useRef(null);
+  const { setChats } = useChatsContext();
 
   const handleInput = (e) => {
     const value = e.target.value;

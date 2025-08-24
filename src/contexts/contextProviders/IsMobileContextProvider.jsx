@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IsMobileContext } from './isMobileContext';
+import { IsMobileContext } from '../isMobileContext';
 
 export default function IsMobileContextProvider({ children }) {
   const [isMobile, setIsMobile] = useState();

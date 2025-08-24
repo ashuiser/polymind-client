@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.jsx';
 import { BrowserRouter } from "react-router";
-import ClerkProviderWithRouter from './contexts/ClerkProvider.jsx';
+import ClerkProviderWithRouter from './contexts/contextProviders/ClerkProvider.jsx';
 
 
 
