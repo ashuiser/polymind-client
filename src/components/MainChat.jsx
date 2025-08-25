@@ -8,8 +8,16 @@ export default function MainChat() {
   const { temporaryChat } = useTemporaryChatsContext();
 
   return (
-    <div className="flex flex-col items-center h-full w-full overflow-hidden">
-      <div className="flex-1 flex justify-center w-full overflow-hidden">
+    <div className="realtive flex flex-col items-center h-full w-full overflow-hidden">
+      <div className=" flex-1 flex justify-center w-full overflow-hidden">
+        {/* <!-- Blur overlay (top to bottom) --> */}
+        <div
+          className="absolute top-0 left-0 right-0 h-28 pointer-events-none
+          backdrop-blur-md
+          [mask-image:linear-gradient(to_bottom,black,transparent)]
+          [-webkit-mask-image:linear-gradient(to_bottom,black,transparent)]
+          bg-gradient-to-b from-black to-transparent">
+        </div>
         {
           chats.length > 0 ?
             <Chats chats={chats} />
@@ -25,8 +33,16 @@ export default function MainChat() {
               </div>
             )
         }
+        {/* <!-- Blur overlay --> */}
+        <div
+          class="absolute bottom-0 left-0 right-0 h-40 pointer-events-none 
+           backdrop-blur-md 
+           [mask-image:linear-gradient(to_bottom,transparent,black)] 
+           [-webkit-mask-image:linear-gradient(to_bottom,transparent,black)] 
+           bg-gradient-to-b from-transparent to-gray-900/70">
+        </div>
       </div>
-      <div className="flex justify-center pb-6 w-full">
+      <div className="absolute bottom-0 z-10 flex justify-center pb-6 w-full">
         <ChatInputCard />
       </div>
     </div>

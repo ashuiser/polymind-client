@@ -34,7 +34,7 @@ export default function ContentArea() {
 
   return (
     <div className='relative flex h-[100dvh] max-w-screen flex-col justify-between items-center'>
-      <nav className="flex w-full items-center justify-between py-2 px-4">
+      <nav className="absolute top-0 z-10 flex w-full items-center justify-between py-3 px-4">
         {/* Mobile Menu Button */}
         {isMobile && <button
           onClick={() => setShowMobileSidebar(true)}
@@ -85,7 +85,9 @@ export default function ContentArea() {
           <Icon path={mdiIncognito} size={1} />
         </button>
       </nav>
-      <MainChat />
+      <div className='h-full w-full overflow-hidden'>
+        <MainChat />
+      </div>
     </div>
   )
 }
